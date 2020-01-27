@@ -59,7 +59,7 @@ class Child extends React.Component
                             input={this.state.sarthak[i]}
 
                         />
-                        {(this.state.sarthak[i]!=''  && this.state.sarthak[i]!=undefined)
+                        {(this.state.sarthak[i]!=''  && this.state.sarthak[i]!=undefined  && this.props.location.parentList[i]!=this.state.sarthak[i])
                            ? <button
                                 onClick={()=>{
                                     this.editEmployee(i);
