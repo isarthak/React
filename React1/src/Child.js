@@ -35,8 +35,15 @@ class Child extends React.Component
     }
 
     deleteEmployee= (i) =>{
-        this.props.location.deleteEmployee(i);
-        this.setState({});
+
+        var r = window.confirm("Do you want to delete ("+this.props.location.parentList[i]+") from the list ?");
+        if (r == true) {
+            this.props.location.deleteEmployee(i);
+            this.setState({});
+        } else {
+        }
+
+
     }
 
 
@@ -49,7 +56,7 @@ class Child extends React.Component
                 return(
                     <div>
                         {name} 
-                        <input
+                        {/* <input
                             type="text"
                             placeholder="Enter text to edit"
                             onChange={(value)=>{
@@ -58,21 +65,27 @@ class Child extends React.Component
                             }}
                             input={this.state.sarthak[i]}
 
-                        />
-                        {(this.state.sarthak[i]!=''  && this.state.sarthak[i]!=undefined  && this.props.location.parentList[i]!=this.state.sarthak[i])
-                           ? <button
-                                onClick={()=>{
-                                    this.editEmployee(i);
-                                    }}>Edit
-                              </button>
-                            :false
-                        }
+                        /> */}
+
+
+                        {/* <button
+                            onClick={()=>{
+                                this.editEmployee(i);
+                                }}>Edit
+                        </button> */}
+                        <Link to={{
+                            pathname:'/',
+                            indexToEdit:i
+                        }}> Edit</Link>
+
                         <button
                             onClick={()=>{this.deleteEmployee(i)}}>Delete
                         </button>
                     </div>
                 )
-            })}
+            })} 
+            <br/>
+            <br/>
             <Link to={{
                         pathname:'/',
             }}>Add more Elements</Link>

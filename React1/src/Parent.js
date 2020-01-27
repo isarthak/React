@@ -44,6 +44,13 @@ class Parent extends React.Component
         })
     };
 
+    componentDidMount()
+    {
+        if(this.props.location.indexToEdit != undefined){
+            this.setState({newValue:this.state.newList[this.props.location.indexToEdit]})
+        }
+    }
+
     render() 
     {
         return(
@@ -57,13 +64,32 @@ class Parent extends React.Component
             />
             
             {
-                this.state.newValue!="" 
+                this.state.newValue!="" && this.props.location.indexToEdit == undefined
                     ?<button
                         onClick={this.addEmployee}
                      >Add
                      </button>
                     :false
             }
+
+            {  
+                    this.props.location.indexToEdit != undefined
+                        ?
+                         <button
+                            onClick={()=>{
+                                console.log("you are trying to edit",this.props.location.indexToEdit)
+                                var newList = this.state.newList;
+                                newList[this.props.location.indexToEdit]= this.state.newValue;
+                                this.setState({newList, newValue:''});
+                                this.props.location.indexToEdit=undefined;
+                            }}
+                         >Confirm
+                         </button>
+                        :false
+            }  
+
+            <br/>
+            <br/>
             <div>
                 {this.state.newList.length>0
                 ?    <Link to={{
