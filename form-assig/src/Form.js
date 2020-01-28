@@ -90,6 +90,8 @@ class Form extends React.Component{
           if(res.data.status==="success"){
             this.props.sendEmailId(this.state.emailId);
             this.props.history.push("/userdata") 
+            }else{
+                this.setState({error:"Duplicate Email"})
             }
         })
     }
