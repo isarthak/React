@@ -22,7 +22,7 @@ class UserData extends React.Component{
         const cookies = new Cookies();
         const cookieState = cookies.get("state");
 
-        if(this.state.cookieValue === '' || cookieState !== undefined){
+        if(this.state.cookieValue === '' || cookieState !== undefined || cookies.get("emailKey")===undefined){
             this.props.history.push("/") 
         } else{
             this.props.loadUserData(this.state.cookieValue).then(()=>{
